@@ -139,7 +139,7 @@
 
 ### Info : 서비스 소개
 
-<img src="/docs/screen/info_page.gif" width="100"/>
+<img src="/docs/screen/info_page.gif" width="300"/>
 
 - 로그인을 하지 않은 채 '소귀경'에 접속했을때 보여지는 페이지
 - 소귀경 서비스 전반에 대한 설명을 제공
@@ -147,7 +147,7 @@
 
 ### Home : 트렌드, 인기뉴스, 카테고리별 뉴스
 
-<img src="/docs/screen/home_page.gif" width="100"/>
+<img src="/docs/screen/home_page.gif" width="300"/>
 
 - '소귀경'의 첫 페이지로 최신 트렌드, 인기뉴스, 카테고리별 뉴스 제공
 - 최신 트렌드는 1시간 내 발행된 기사 중 자주 등장한 단어를 워드 클라우드로 제공
@@ -156,14 +156,14 @@
 
 ### News : 경제 뉴스 목록
 
-<img src="/docs/screen/news_list.gif" width="100"/>
+<img src="/docs/screen/news_list.gif" width="300"/>
 
 - 전체 뉴스 리스트를 카테고리별로, 최신순 또는 인기순으로 제공
 - 무한 스크롤로 전체 기사 조회 가능
 
 ### News Detail : 뉴스 상세페이지
 
-<img src="/docs/screen/news_detail.gif" width="100"/>
+<img src="/docs/screen/news_detail.gif" width="300"/>
 
 - 각 뉴스에 대한 전체 내용을 볼 수 있는 페이지
 - 카테고리, 언론사, 전체 내용, 기자, 원본URL 제공
@@ -172,7 +172,7 @@
 - 밑줄 친 단어 클릭 시, 단어 설명 모달 활성화
 - 해당 기사의 관련 기사 6개 제공
 
-<img src="/docs/screen/news_detail_2.gif" width="100"/>
+<img src="/docs/screen/news_detail_2.gif" width="300"/>
 
 - 메모 등록, 수정, 삭제, 공개여부 변경 가능
 - 기사 내용을 드래그해 메모 내 인용문으로 추가 가능
@@ -180,14 +180,14 @@
 
 ### Search : 키워드 검색
 
-<img src="/docs/screen/search_page.gif" width="100"/>
+<img src="/docs/screen/search_page.gif" width="300"/>
 
 - 키워드로 기사 검색 가능
 - 카테고리별로, 최신순 또는 인기순으로 볼 수 있으며, 무한 스크롤로 구현
 
 ### Quiz : 경제 용어 퀴즈
 
-<img src="/docs/screen/quiz_page.gif" width="100"/>
+<img src="/docs/screen/quiz_page.gif" width="300"/>
 
 - 읽었던 기사에 대한 경제 용어 퀴즈 풀이 가능
 - 총 7문제로 5문제 이상 풀면 경험치 + 100
@@ -195,7 +195,7 @@
 
 ### MyPage : 로그인 및 나의 정보
 
-<img src="/docs/screen/mypage.gif" width="100"/>
+<img src="/docs/screen/mypage.gif" width="300"/>
 
 - 나의 레벨과 경험치를 조회 가능
 - 소귀경의 전체 레벨 구조 조회 가능
