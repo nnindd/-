@@ -3,7 +3,7 @@ import numpy as np
 
 import re
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from pytz import timezone
 
 # 시간 측정
@@ -35,6 +35,9 @@ spark = SparkSession(sc)
 
 # ----------- 경로 설정 ----------
 # server = "hdfs://cluster.p.ssafy.io:9000" # 서버
+server = "hdfs://localhost:9000"
+path = "/news/"
+folder_path = "daily-news/"
 hdfs_path = "hdfs://localhost:9000/news/" # hdfs 폴더 저장 경로
 
 daily_news = 'daily-news/'
@@ -75,6 +78,60 @@ def getTodayNews():
   # print("test >> ", week_df.take(1), today_df.take(1))
   
   return week_df, today_df
+
+# 뉴스 전체 기사, 오늘 전체 기사 불러오기
+def getTodayNews_hdfs():
+  print("### 뉴스 기사 가져오기 ###")
+  # 경로
+  hdfs_path = server + path + folder_path # hdfs 폴더 저장 경로
+  
+  # hadoop 설정
+  URI           = sc._gateway.jvm.java.net.URI
+  Path          = sc._gateway.jvm.org.apache.hadoop.fs.Path
+  FileSystem    = sc._gateway.jvm.org.apache.hadoop.fs.FileSystem
+  Configuration = sc._gateway.jvm.org.apache.hadoop.conf.Configuration
+
+  fs = FileSystem.get(URI(server), Configuration())
+  
+  # 빈 데이터 프레임
+  from pyspark.sql.types import StructType, StructField, StringType
+  mySchema = StructType([ StructField("article_id", StringType(), True)\
+                        ,StructField("article_category", StringType(), True)\
+                        ,StructField("article_regtime", StringType(), True)\
+                        ,StructField("article_editor", StringType(), True)\
+                        ,StructField("article_press", StringType(), True)\
+                        ,StructField("article_title", StringType(), True)\
+                        ,StructField("article_thumbnail", StringType(), True)\
+                        ,StructField("article_content", StringType(), True)\
+                        ,StructField("article_url", StringType(), True)\
+                        ,StructField("article_hits", StringType(), True)])
+  
+  # 일주일치 뉴스
+  df = spark.createDataFrame([], mySchema)
+  # 오늘치 뉴스
+  todaydf = None
+  
+  # 일주일치 경로가 있는지 확인
+  date_obj = datetime.strptime(today, '%Y%m%d')
+  date_list = [(date_obj - timedelta(days=x)).strftime('%Y%m%d') for x in range(6,-1,-1)]
+  
+  for days in date_list:
+    print(days)
+    if fs.exists(Path(hdfs_path + days + '.csv')):
+      print("폴더가 존재합니다.")
+      daily_df = spark.read.option("multiLine",True).option("header", True).option("delimiter", ",").csv(hdfs_path + days + '.csv')
+      df = df.union(daily_df)
+      # 오늘 날짜 뉴스 데이터
+      if days is date_list[-1]:
+        todaydf = daily_df
+    else:
+      print("폴더가 존재하지 않습니다.")
+      pass
+  
+  print("### 일주일, 오늘 뉴스 기사 가져오기 완료 ###")
+  
+  return df, todaydf
+
 
 # 제거 함수 정의
 def remove_unnecessary_words(text, stop_words):
