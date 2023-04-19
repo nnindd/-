@@ -25,7 +25,6 @@ from konlpy.tag import Kkma
 
 # 오늘 날짜 ex) 20230320
 today = datetime.today().astimezone(timezone('Asia/Seoul')).strftime("%Y%m%d")
-#today = '20230404'
 
 from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
@@ -47,7 +46,7 @@ stop_word_path = '/home/ubuntu/data/hadoop/stopword.txt'
 font_path = '/home/ubuntu/data/hadoop/assets/NotoSansKR-Black.otf'
 
 # 서버
-db_connection_str = 'mysql+pymysql://root:ssafy@j8a509.p.ssafy.io:3306/ssafy_cow_db'
+db_connection_str = 'mysql+pymysql://유저명:비밀번호@j8a509.p.ssafy.io:3306/ssafy_cow_db'
 # ----------- 경로 설정 끝 ----------
 
 # HDFS 오류로 임시로 DB에서 불러오기
